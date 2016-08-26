@@ -174,6 +174,7 @@ ALL_EMULATION_SOURCES = \
 	earmaoutl.c \
 	earmcoff.c \
 	earmelf.c \
+	eelf_arm_mtgos.c \
 	earmelf_fbsd.c \
 	earmelf_linux.c \
 	earmelf_linux_eabi.c \
@@ -287,6 +288,7 @@ ALL_EMULATION_SOURCES = \
 	eelf32xstormy16.c \
 	eelf32xtensa.c \
 	eelf_i386.c \
+	eelf_i386_mtgos.c \
 	eelf_i386_be.c \
 	eelf_i386_chaos.c \
 	eelf_i386_fbsd.c \
@@ -503,6 +505,7 @@ ALL_64_EMULATION_SOURCES = \
 	eelf_k1om.c \
 	eelf_k1om_fbsd.c \
 	eelf_x86_64.c \
+	eelf_x86_64_mtgos.c \
 	eelf_x86_64_cloudabi.c \
 	eelf_x86_64_fbsd.c \
 	eelf_x86_64_nacl.c \
@@ -751,6 +754,10 @@ earmcoff.c:	$(srcdir)/emulparams/armcoff.sh \
 earmelf.c: $(srcdir)/emulparams/armelf.sh \
   $(ELF_DEPS) $(srcdir)/emultempl/armelf.em \
   $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+
+eelf_arm_mtgos.c: $(srcdir)/emulparams/elf_arm_mtgos.sh \
+  $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf_arm_mtgos "$(tdir_elf_i386_myos)"
 
 earmelf_fbsd.c: $(srcdir)/emulparams/armelf_fbsd.sh \
   $(srcdir)/emulparams/armelf.sh \
@@ -1311,6 +1318,10 @@ eelf32xtensa.c: $(srcdir)/emulparams/elf32xtensa.sh $(ELF_DEPS) \
 
 eelf_i386.c: $(srcdir)/emulparams/elf_i386.sh \
   $(ELF_X86_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+
+eelf_i386_mtgos.c: $(srcdir)/emulparams/elf_i386_mtgos.sh \
+  $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf_i386_mtgos "$(tdir_elf_i386_mtgos)"
 
 eelf_i386_be.c: $(srcdir)/emulparams/elf_i386_be.sh \
   $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
@@ -2004,6 +2015,10 @@ eelf_k1om_fbsd.c: $(srcdir)/emulparams/elf_k1om_fbsd.sh \
 
 eelf_x86_64.c: $(srcdir)/emulparams/elf_x86_64.sh \
   $(ELF_X86_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+
+eelf_x86_64_myos.c: $(srcdir)/emulparams/elf_x86_64_mtgos.sh \
+  $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf_x86_64_mtgos "$(tdir_elf_x86_64_mtgos)"
 
 eelf_x86_64_cloudabi.c: $(srcdir)/emulparams/elf_x86_64_cloudabi.sh \
   $(srcdir)/emulparams/elf_x86_64.sh \

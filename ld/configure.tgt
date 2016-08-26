@@ -95,6 +95,9 @@ arm*b-*-freebsd*)	targ_emul=armelfb_fbsd
 arm*-*-freebsd* | arm-*-kfreebsd*-gnu)
 	       		targ_emul=armelf_fbsd
 			targ_extra_emuls="armelfb_fbsd armelf" ;;
+arm-*-mtgos*)
+			targ_emul=elf_arm_mtgos
+			targ_extra_emuls=armelf ;;
 armeb-*-netbsdelf*)	targ_emul=armelfb_nbsd;
 			targ_extra_emuls="armelf_nbsd armelf armnbsd" ;;
 arm-*-netbsdelf*)	targ_emul=armelf_nbsd;
@@ -229,6 +232,15 @@ i[3-7]86-*-nto-qnx*)	targ_emul=i386nto ;;
 i[3-7]86-*-vsta)	targ_emul=vsta ;;
 i[3-7]86-*-go32)	targ_emul=i386go32 ;;
 i[3-7]86-*-msdosdjgpp*) targ_emul=i386go32 ;;
+i[3-7]86-*-mtgos*)
+			targ_emul=elf_i386_mtgos
+			targ_extra_emuls=elf_i386
+			targ64_extra_emuls="elf_x86_64_mtgos elf_x86_64"
+			;;
+x86_64-*-mtgos*)
+			targ_emul=elf_x86_64_mtgos
+			targ_extra_emuls="elf_i386_mtgos elf_x86_64 elf_i386"
+			;;
 i[3-7]86-*-aix*)	targ_emul=i386coff ;;
 i[3-7]86-*-sco*)	targ_emul=i386coff ;;
 i[3-7]86-*-isc*)	targ_emul=i386coff ;;
